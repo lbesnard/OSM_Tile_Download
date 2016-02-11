@@ -1,0 +1,3 @@
+[submodule "IGC2CSV"]
+	path = modules/IGC2CSV
+	url = https://github.com/OverloadUT/IGC2CSV.git
