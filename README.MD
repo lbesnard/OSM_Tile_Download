@@ -47,7 +47,7 @@ apt-get install freeglut3 freeglut3-dev gnuplot perl-tk xterm gnuplot-x11
 
 # Requirements
 pip install grequests
-
+python-geopy
 imagemagick
 
 ... Linux . Have no idea if this would work on OSX
