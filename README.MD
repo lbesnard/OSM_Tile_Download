@@ -33,6 +33,7 @@ needed (map file path, corner coordinates) are added to the ```$HOME/.ogierc``` 
  ./osm_ogie3d.py example/2016-02-02-FLY-5348-01.IGC mount_wellington 15 outdoors | xargs display;
  ./osm_ogie3d.py igcFile.igc testmap 11 sat;
 ```
+-![alt text](example/ogie3d.jpg "ogie3d with elevation and map created with osm_ogie3d.py")		
 
 ### bash complete
 This is a complete example to put in your ```~/.complete``` or ```~/.bashrs```
