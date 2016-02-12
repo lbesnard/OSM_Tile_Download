@@ -5,8 +5,9 @@ from modules.osm import *
 if __name__== '__main__':
     """
     Usage examples:
-     ./osm_ogie3d.py mount_wellington example/2016-02-02-FLY-5348-01.IGC 15 outdoors | xargs display
-     ./osm_ogie3d.py testmap igcFile.igc 11 sat
+     ./osm_ogie3d.py example/2016-02-02-FLY-5348-01.IGC mount_wellington 15 outdoors | xargs display
+     ./osm_ogie3d.py igcFile.igc testmap 11 sat
+     ./osm_ogie3d.py igcFile.igc
 
     To be used in conjonction with OGIE3D and GPLIGC software for paragliding
     see http://pc12-c714.uibk.ac.at/GPLIGC/GPLIGC.html
@@ -27,13 +28,22 @@ if __name__== '__main__':
      * what do to with ogierc has too many maps ?
 
     """
-    if len(sys.argv) != 5:
-        sys.exit('Usage: osm_ogie3d.py regionName(str) igcFile.igc zoomLevel(1-18?) distance(km) mapType(sat landscape outdoors transport cycle)' % sys.argv[0])
 
-    regionName  = str(sys.argv[1])
-    igcFilePath = sys.argv[2]
-    zoomLevel   = int(sys.argv[3])
-    mapType     = sys.argv[4]
+    if len(sys.argv) == 2:
+        # default option values
+        regionName = 'map'
+        zoomLevel  = 15
+        mapType    = 'outdoors'
+
+    elif len(sys.argv) != 5 and len(sys.argv) > 2:
+        sys.exit('Usage: osm_ogie3d.py igcFile.ig regionName(str) zoomLevel(1-18?) distance(km) mapType(sat landscape outdoors transport cycle)' % sys.argv[0])
+
+    else:
+         regionName  = str(sys.argv[2])
+         zoomLevel   = int(sys.argv[3])
+         mapType     = sys.argv[4]
+
+    igcFilePath = sys.argv[1]
 
     maxLat, minLat, maxLon, minLon = getLatLonBoundariesIgc(igcFilePath)
     tilesDir                       = downloadOsmTiles(maxLat, minLat, maxLon, minLon, zoomLevel, mapType)

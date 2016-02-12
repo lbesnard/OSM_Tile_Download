@@ -28,12 +28,28 @@ needed (map file path, corner coordinates) are added to the ```$HOME/.ogierc``` 
 
 ### Examples:
  ```bash
- ./osm_ogie3d.py $map_name $igc_file $zoom_level $map_tile_style;
- ./osm_ogie3d.py mount_wellington example/2016-02-02-FLY-5348-01.IGC 15 outdoors | xargs display;
- ./osm_ogie3d.py testmap igcFile.igc 11 sat;
+ ./osm_ogie3d.py $igc_file ;
+ ./osm_ogie3d.py $igc_file $map_name $zoom_level $map_tile_style; # optional arguments
+ ./osm_ogie3d.py example/2016-02-02-FLY-5348-01.IGC mount_wellington 15 outdoors | xargs display;
+ ./osm_ogie3d.py igcFile.igc testmap 11 sat;
 ```
 
-![alt text](example/ogie3d.jpg "ogie3d with elevation and map created with osm_ogie3d.py")
+### bash complete
+This is a complete example to put in your ```~/.complete``` or ```~/.bashrs```
+```bash
+IGC_DIR='PLEASE ADD PATH TO IGC FILES'
+_list_igc_files() {
+    local curr_arg
+    local option_list
+
+    curr_arg=${COMP_WORDS[COMP_CWORD]};
+    option_list=`ls $IGC_DIR/*.IGC`
+    COMPREPLY=( $(compgen -W '`echo $option_list`' -- $curr_arg ) );
+}
+
+alias paragliding_create_osm_map='PATH TO OSM_Tile_Download/osm_ogie3d.py'
+complete -F _list_igc_files paragliding_create_osm_map
+```
 
 ### OGIE3D, GPLIGC paragliding software - install tips
 Read documention found in http://pc12-c714.uibk.ac.at/GPLIGC/GPLIGC.html in order to use OGIE3D
