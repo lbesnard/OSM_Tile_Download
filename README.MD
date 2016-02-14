@@ -62,10 +62,16 @@ apt-get install freeglut3 freeglut3-dev gnuplot perl-tk xterm gnuplot-x11
 
 
 
-# Requirements
-pip install grequests
-python-geopy
-imagemagick
+# Installation & Requirements
 
-... Linux . Have no idea if this would work on OSX
+This has been tested on Linux Mint only. In order to install this script, simply do :
+
+```bash
+git clone --recursive git@github.com:lbesnard/OSM_Tile_Download.git
+
+# Debian dependencies
+sudo pip install grequests;
+sudo apt-get install python-geopy;
+sudo apt-get install imagemagick;
+```
 
